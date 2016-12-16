@@ -1,0 +1,35 @@
+
+import string
+import random
+import time
+
+def matrix():
+	
+	#print("Please do not insert characters that are not in the possibleCharacters list")
+	input('Please extend the shell(the thing on the right) to cover up the source screen, then press Enter')
+	possibleCharacters = '1111111111111111111111111111111111111111' + '000000000000000000000000000000000000000' + ' '
+	# The following parameters are a backup incase I'm a dumbass and delete one and forget what I deleted. 
+	# possibleCharacters = string.ascii_lowercase + string.digits + string.ascii_uppercase + ' /\|.,!@#$%^&*()?;:-_' + ("'")
+	target = ('                                                                                                                                                    ')
+	attemptThis = ''.join(random.choice(possibleCharacters) for i in range(len(target)))
+	
+	completed = False
+	generation = 1
+	
+	while completed == False:
+	    print(attemptThis)
+	    attemptNext = ''
+	    completed = True
+	    for i in range(len(target)):
+	        if attemptThis[i] != target[i]:
+	            completed = False
+	            attemptNext += random.choice(possibleCharacters)
+	        else:
+	            attemptNext += target[i]
+	    generation += 1
+	    attemptThis = attemptNext
+	    time.sleep(0.08)
+	
+	print("Target matched! That took " + str(generation) + " generation(s)")
+
+matrix()
