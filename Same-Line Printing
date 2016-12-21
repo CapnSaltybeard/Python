@@ -1,0 +1,59 @@
+#This program will print a finite amount of binary data 
+
+import random
+import time
+import sys
+
+i = 0
+
+def everything():
+	
+	print('WARNING: PLEASE DO NOT INPUT ABNORMALLY LARGE NUMBERS!\nTHIS WILL CRASH THE TAB AND/OR YOUR BROWSER!')
+	size = int(input('How many bytes would you like to print?'))
+	sizefinal = (size * 8)
+	
+	toprint = '0' + '1' 
+	
+	sleep = float(input('How many seconds between each bit? I recommend .125 seconds.'))
+	
+	def math():
+		totalsecs = (sizefinal * sleep)
+		totalmins = (totalsecs / 60)
+		totalhours = (totalmins / 60)
+		totaldays = (totalhours / 24)
+		totalmonths = (totaldays / 30)
+		totalyears = (totalmonths / 12)
+		
+		print('Looks like this will take about', totalsecs, 'seconds in order to complete!')
+		if totalsecs > 60:
+			if totalmins > 60:
+				if totalhours > 24:
+					if totaldays > 30:
+						if totalmonths > 12:
+							print('Which, of course, is about', totalyears, 'years long! What the hell, man? This should not even be possible but congratulations on doing the impossible.')
+						else:
+							print('Which is about', totalmonths, 'months long! Good luck waiting that long!')
+					else:
+						print('Which is about', totaldays, 'days long! Not too long, but you might wanna put in a shorter number for the size!')
+				else:
+					print('Which is about', totalhours, 'hours long! Might wanna pull up Netflix while you wait!')
+			else:
+				print('Which is about', totalmins, 'minutes long! Might wanna pull up YouTube while you wait!')
+		else:
+			print('Here we go!')
+		
+
+	datagenerator = ''.join(random.choice(toprint) for _ in range(sizefinal))
+	
+	def delay_print(s):
+	    for c in s:
+	        sys.stdout.write('%s' % c)
+	        sys.stdout.flush()
+	        time.sleep(sleep)
+	
+	math()
+	input("Once you press enter, you will have to refresh the page to restart the program")
+	print('==========================================')
+	delay_print(datagenerator)
+
+everything()
